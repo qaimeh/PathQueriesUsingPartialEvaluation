@@ -1,0 +1,8 @@
+<http://node-F> <http://property-p1> <http://node-K>.
+<http://node-K> <http://property-p3> <http://node-A>.
+
+<http://node-F> <http://property-p4> <http://node-G>.
+<http://node-G> <http://property-p5> <http://node-A>.
+
+<http://node-C> <http://property-p6> <http://node-D>.
+<http://node-F> <http://property-p1> <http://node-E>.
