@@ -57,53 +57,10 @@ public abstract class TopKAlgorithm<V,E> implements  ModelInit{
     public LoadingCache<String, TestValues<V>> cache() {
     	
     LoadingCache <String, TestValues<V>> load=	CacheBuilder.newBuilder().maximumSize(Long.MAX_VALUE) // 150000000
-    		.expireAfterAccess(20, TimeUnit.MINUTES)
+    		.expireAfterAccess(80, TimeUnit.MINUTES)
     		.build(new PathCacheLoader<V>());    
     return load;
     }
-
-/*
-public void pathMerger(LoadingCache<String, PathsCache> cachedPaths ) {
-	
-	for(Map.Entry<String, PathsCache> cachePaths: cachedPaths.asMap().entrySet()) {
-		
-		for(Map.Entry<String, List<String>> rmtPaths: cachePaths.getValue().getRmtContents().entrySet()) {
-			
-			for(String remotePath: rmtPaths.getValue()) {
-				String localPath = cachePaths.getValue().getLocalPath();
-				String indx0LocaPath= localPath.split("-<")[0].replace("[", "").replace("]", "");
-				String indxLastLocalPath = localPath.substring(localPath.lastIndexOf(">-")+2).replace("[", "").replace("]", "");
-				 
-				
-				if (indx0LocaPath.equals(cachePaths.getValue().getNode())){
-					System.err.println(remotePath);
-					cachedP= new LinkedList<>();
-					cachedP.add(remotePath+"from endpoint: "+rmtPaths.getKey() );
-				}if(localPath.isEmpty()){
-					// if local dataset doesn't contain the source node all paths will be retrieved from remote
-					cachedP.add(" remote path from: {"+rmtPaths.getKey()+"} "+remotePath);
-					
-					
-				}
-				else if(indxLastLocalPath.equals(remotePath.split("-<")[0])) {
-					System.out.println(localPath.concat(remotePath.replace(remotePath.split("-<")[0], "")));
-					cachedP.add(localPath.concat(" remote path from: {"+rmtPaths.getKey()+"} "+remotePath.replace(remotePath.split("-<")[0], "")));
-				}
-				
-			}
-			//System.out.println(localPath.concat(remotePath));
-			
-			
-			
-		
-			
-		}
-		
-	}
-	
-}
-*/
-
 
 }
 

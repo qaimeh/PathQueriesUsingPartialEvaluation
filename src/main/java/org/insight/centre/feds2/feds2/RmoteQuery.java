@@ -31,41 +31,6 @@ public class RmoteQuery<V> implements Callable<List<PathContent<V>>> {
 		this.k=k;
 	}
 	
-	/*public static List<String> FederateRequest(Node pathNode, Node targetNode, String endpoint, int k){
-		
-		List<String> lstRemotePaths= new ArrayList<>();
-		
-		String qry=  "PREFIX : <http://dbpedia.org/resource/>\n"
-		        + "PREFIX ppfj: <java:org.centre.insight.property.path.>\n"
-		        + "SELECT *"
-		        + "WHERE {  ?path ppfj:topk (<"+pathNode+"> <"+targetNode+"> "+k+") }";
-		        
-			
-	   Query query = QueryFactory.create(qry);
-       try  {
-    	   QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, query);
-           ResultSet results = qexec.execSelect() ;
-           for ( ; results.hasNext() ; ) {
-
-               QuerySolution soln = results.nextSolution();
-               StringBuilder sb = new StringBuilder();
-
-               for (Var v : query.getProjectVars() ) {
-                    
-                       RDFNode val = soln.get(v.getVarName());
-                       sb.append(val==null? "(nil)" : "("+val.toString()+")");
-                       lstRemotePaths.add(pathFormat(val.toString()));
-               }
-               System.out.println(sb);
-           }
-       
-          
-	}catch(QueryParseException parseExc) {parseExc.printStackTrace();}
-
-	
-       return lstRemotePaths;
-	}
-*/
 
 	private  String pathFormat(String path) {
 		
@@ -101,13 +66,10 @@ public class RmoteQuery<V> implements Callable<List<PathContent<V>>> {
                        lstRemotePaths.add((V) pathFormat(val.toString()));
                }
                
-           }
-       
+           }       
            qexec.close();
-           
-          
+                   
 	}catch(QueryParseException parseExc) {parseExc.printStackTrace();}
-
 	
        return (List<PathContent<V>>) lstRemotePaths;
        }
